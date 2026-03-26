@@ -8,9 +8,9 @@
 ![Search](https://img.shields.io/badge/SEARCH-VECTOR_DB-purple?style=for-the-badge&labelColor=000000)
 ![License](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge&labelColor=000000)
 
-**A live ArXiv intelligence engine that scores, ranks, and semantically searches research papers using on-device LLM inference — built for engineers who need signal, not noise.**
+**A live ArXiv intelligence engine that scores, ranks, and semantically searches research papers using on-device LLM inference — built with love and curiosity.**
 
-[Live Demo](#) · [Report Bug](https://github.com/InfamousFreak/research-monitor/issues) · [Request Feature](https://github.com/InfamousFreak/research-monitor/issues)
+[Report Bug](https://github.com/InfamousFreak/research-monitor/issues) · [Request Feature](https://github.com/InfamousFreak/research-monitor/issues)
 
 </div>
 
@@ -20,7 +20,7 @@
 > RESEARCH_MONITOR_v1.0
 STATUS: LIVE DATA FEED | MODEL: GEMMA:4B
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-INGESTING  cs.AI · cs.CV · cs.LG · cs.CL · stat.ML
+INGESTING  cs.AI · cs.CV · cs.LG · cs.CL
 SCORING    relevance · implementability · hardware
 EMBEDDING  nomic-embed-text · cosine similarity
 SERVING    semantic search · distance threshold
@@ -31,9 +31,9 @@ SERVING    semantic search · distance threshold
 
 ## 📸 Dashboard
 
-![Research Monitor Dashboard](dashboard_screenshot.png)
+![Research Monitor Dashboard]()
 
-> Terminal-aesthetic live feed — papers scored by relevance, flagged by implementability, tagged with hardware requirements. Built for engineers, not academics.
+> Terminal-aesthetic live feed — papers scored by relevance, flagged by implementability, tagged with hardware requirements.
 
 ---
 
@@ -194,21 +194,19 @@ go run main.go
 ```
 research-monitor/
 ├── main.go                 # entry point
-├── fetcher/
-│   ├── arxiv.go           # ArXiv OAI-PMH client
-│   └── parser.go          # Atom/XML feed parser
-├── inference/
-│   ├── gemma.go           # Gemma 4B scoring pipeline
-│   ├── embedder.go        # Nomic embedding generation
-│   └── prompts.go         # scoring prompt templates
-├── store/
-│   ├── vector.go          # vector store + similarity search
-│   └── db.go              # paper persistence
-├── ui/
-│   └── terminal.go        # terminal dashboard renderer
-├── config/
-│   └── config.go          # configuration management
-└── config.yaml            # targets + thresholds
+├── cmd/
+│   ├── api           # ArXiv OAI-PMH client
+│   └── harvester
+│   └── processor         # Atom/XML feed parser
+├── internal/
+│   ├── database           # Gemma 4B scoring pipeline
+│   └── llm        
+├── pkg/          # vector store + similarity search
+│   └── models              # paper persistence
+├── frontend/
+    ├── public
+│   └── app        # terminal dashboard renderer         # configuration management
+└── docker-compose.yaml            # targets + thresholds
 ```
 
 ---
@@ -223,22 +221,6 @@ The scoring system is essentially a lightweight classifier that answers: *"Is th
 
 ---
 
-## 🗺️ Roadmap
-
-- [x] Live ArXiv ingestion with category targets
-- [x] Gemma 4B relevance + implementability scoring
-- [x] Nomic embedding + semantic vector search
-- [x] Distance threshold filtering
-- [x] Terminal UI with scored cards
-- [ ] Clickable cards → paper detail page (`/paper/:arxiv_id`)
-- [ ] Category filter buttons in UI
-- [ ] Groq API backend (replacing local Ollama for deployment)
-- [ ] HuggingFace paper feed integration
-- [ ] Daily email digest of top 5 scored papers
-- [ ] Public deployment with live URL
-- [ ] "Interrogate" mode — direct Gemma conversation per paper
-
----
 
 ## 🛠️ Tech Stack
 
@@ -282,21 +264,15 @@ For deployment, the Ollama calls will be swapped for **Groq API** which handles 
 **Smarak Choudhury**
 
 - GitHub: [@InfamousFreak](https://github.com/InfamousFreak)
-- LinkedIn: [smarak-choudhury](https://linkedin.com/in/smarak-choudhury)
-- Portfolio: [your-portfolio-url]
+- LinkedIn: [smarak-choudhury](https://www.linkedin.com/in/smarak-choudhury-423b39280/)
+- Portfolio: https://slick-folio-magic.vercel.app/
 
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
 **Built by an engineer, for engineers.**
-*Signal over noise. Always.*
 
 ⭐ Star this repo if you find it useful
 
