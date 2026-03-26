@@ -31,7 +31,7 @@ SERVING    semantic search · distance threshold
 
 ## 📸 Dashboard
 
-![Research Monitor Dashboard]()
+![Research Monitor Dashboard](https://res.cloudinary.com/dfal8ntkc/image/upload/v1774538206/Screenshot_2026-03-26_065850_ezggbx.png)
 
 > Terminal-aesthetic live feed — papers scored by relevance, flagged by implementability, tagged with hardware requirements.
 
@@ -193,20 +193,20 @@ go run main.go
 
 ```
 research-monitor/
-├── main.go                 # entry point
+├── main.go                 
 ├── cmd/
-│   ├── api           # ArXiv OAI-PMH client
+│   ├── api           
 │   └── harvester
-│   └── processor         # Atom/XML feed parser
+│   └── processor         
 ├── internal/
-│   ├── database           # Gemma 4B scoring pipeline
+│   ├── database   
 │   └── llm        
-├── pkg/          # vector store + similarity search
-│   └── models              # paper persistence
+├── pkg/          
+│   └── models              
 ├── frontend/
     ├── public
-│   └── app        # terminal dashboard renderer         # configuration management
-└── docker-compose.yaml            # targets + thresholds
+│   └── app        
+└── docker-compose.yaml            
 ```
 
 ---
