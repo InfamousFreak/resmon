@@ -40,7 +40,7 @@ func fetchFeed(url string, wg *sync.WaitGroup) {
 		}
 
 		// Call the exported LLM processor
-		llm.ProcessPaper(id, item.Title, item.Description, item.Published)
+		llm.ProcessPaper(id, item.Title, item.Description, item.Published, item.Link)
 	}
 }
 
