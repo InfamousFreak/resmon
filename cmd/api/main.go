@@ -171,10 +171,13 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"}, // Allows your Next.js frontend
-		AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
-		AllowedHeaders:   []string{"Accept", "Content-Type"},
-		AllowCredentials: true,
+		// Explicitly whitelist your Vercel domain and localhost
+		AllowedOrigins: []string{
+			"https://resmon-74i40n2oe-smarak-choudhurys-projects.vercel.app",
+			"http://localhost:3000",
+		},
+		AllowedMethods: []string{"GET", "POST", "OPTIONS"},
+		AllowedHeaders: []string{"Accept", "Content-Type"},
 	}))
 
 	// 4. Define your API Routes
