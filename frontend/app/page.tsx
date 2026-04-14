@@ -3,6 +3,8 @@
 import { useEffect, useState, type KeyboardEvent } from "react";
 import { useDebounce } from "../hooks/useDebounce";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
 // The same struct from your Go backend!
 interface Paper {
   arxiv_id: string;
@@ -58,7 +60,7 @@ export default function Dashboard() {
     }
     setApiError(null);
 
-    fetch("http://localhost:8080/api/papers")
+    fetch(`${API_URL}/api/papers`)
       .then(parsePapersResponse)
       .then((data) => {
         setPapers(data || []);
@@ -75,7 +77,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/papers")
+    fetch(`${API_URL}/api/papers`)
       .then(parsePapersResponse)
       .then((data) => {
         setPapers(data || []);
@@ -104,7 +106,7 @@ export default function Dashboard() {
 
     setLoading(true);
     setApiError(null);
-    fetch(`http://localhost:8080/api/search?q=${encodeURIComponent(searchQuery)}`)
+    fetch(`${API_URL}/api/search?q=${encodeURIComponent(searchQuery)}`)
       .then(parsePapersResponse)
       .then((data) => {
         setPapers(data || []);
@@ -403,7 +405,7 @@ export default function Dashboard() {
                     setIsInterrogating(true);
 
                     // 2. Fire to your existing Go API
-                    fetch("http://localhost:8080/api/interrogate", {
+                    fetch(`${API_URL}/api/interrogate`, {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({ paper_id: selectedPaper.arxiv_id, question: userText })
